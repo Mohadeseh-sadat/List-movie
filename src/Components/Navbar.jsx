@@ -1,7 +1,7 @@
 import { Navbar} from "flowbite-react"
 export default function myNavbar() {
     return (
-        <Navbar className="flex justify-between items-center bg-white border-gray-200  gap-x-6">
+        <Navbar className="flex justify-between items-center gap-x-6">
        <div className="flex items-center px-32">
          <a href="#">
           <img src="./src/assets/icon (1).svg" className="" alt="" />

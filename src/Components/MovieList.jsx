@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import SearchBar from "./SearchBar"
 export default function MovieList() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
@@ -19,14 +20,23 @@ export default function MovieList() {
         fetchMovie();
     }, []);
     return (
-        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-[616px] m-[120px] justify-items-center px-6">
+        <div>
+        <div className="flex flex-col gap-4 mb-8 container mx-auto px-6 ml-[120px] w-[588px] h-[144px] ">
+            <h1 className="text-6xl font-Poppins font-semibold text-gray-50 mt-16">MaileHereko</h1>
+            <p className="font-Poppins text-gray-300 text-base ">List of movies and TV Shows, I, Pramod Poudel have watched till date. Explore what I have watched and also feel free to make a suggestion.😉
+            </p>
+        </div>
+        <SearchBar/>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-[100px] m-[120px] justify-items-center px-6">
             {movies.map(movie => (
-                <div key={movie.id} className="bg-[#20283ECC] rounded-xl p-2">
+                <div key={movie.id} className="bg-[#323B54] rounded-xl p-2">
                 <img src={movie.poster} alt={movie.title} className=" w-[282px] h-[480px] rounded-xl"/>
-                <h2 className="text-[#EBEEF5] text-sm font-HORIZONTAL font-bold mt-4 mb-4">{movie.title}</h2>
+                <h2 className="text-[#EBEEF5] text-sm font-Poppins font-bold mt-4 mb-4">{movie.title}</h2>
                 <p>{movies.genres?.join(", ")}</p>
             </div>))}
         </div>
+        </div>
+        
     );
 };
 
