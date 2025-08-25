@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router";
 import MovieList from "./Components/MovieList"
 import Image from "./assets/Background.png"
 import Navbar from "./Components/Navbar";
