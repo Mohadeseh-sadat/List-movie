@@ -1,21 +1,19 @@
 import { useState } from "react";
-import axios from "axios";
-export default function SearchBar({ onResults }) {
-    const [query, setQuery] = useState('');
-    const handleSearch = async (e) => {
+import { useNavigate } from "react-router-dom";
+
+export default function SearchBar() {
+    const [query, setQuery] = useState(" ");
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if (!query.trim()) return;
-        try {
-            const response = await axios.get(
-                'https://moviesapi.codingfront.dev/api/v1/movies?q={name}&page=1'
-            );
-            onResults(response.data.data);
-        } catch (error) {
-            console.error('خطا در جستجو:', error);}
+        if (query.trim()) {
+            navigate(`/search/${query}`);
+            setQuery("");
+        }
     };
     return (
-
-<form onSubmit={handleSearch} className="max-w-md mt-[80px] ml-[142px]">   
+<form onSubmit={handleSubmit} className="max-w-md mt-[80px] ml-[142px]">   
     <label htmlFor="default-search" className="mb-2 text-sm font-Poppins text-gray-900 sr-only dark:text-white">Search</label>
     <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
