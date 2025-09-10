@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import MovieGenres from "./MovieGenres";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -61,7 +62,8 @@ export default function MovieList() {
             List of movies and TV Shows, I, Pramod Poudel have watched till date. Explore what I have watched and also feel free to make a suggestion. 😉        </p>
       </div>
       <SearchBar onResults={setMovies} />
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-[100px] m-[120px] justify-items-center px-6">
+      <MovieGenres/>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-[10px] m-2 ml-[120px] justify-items-center px-6">
         {movies.map(movie => (
           <Link to={`/movie/${movie.id}`} key={movie.id || movie.id}>
             <div className="bg-[#323B54] rounded-xl p-2">

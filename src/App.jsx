@@ -4,6 +4,7 @@ import Image from "./assets/Background.png";
 import Navbar from "./Components/Navbar";
 import DetailsPage from "./Components/DetailsPage";
 import SearchBar from "./Components/SearchBar";
+import MovieGenres from "./Components/MovieGenres";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/search/:query" element={<MovieList />} />
           <Route path="/movie/:id" element={<DetailsPage />} />
           <Route path="/search/:query" element={<SearchBar />} />
+          <Route path="/genre" element={<MovieGenres />} />
         </Routes>
       </div>
     </BrowserRouter>
