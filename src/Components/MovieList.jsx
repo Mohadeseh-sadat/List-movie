@@ -63,7 +63,7 @@ export default function MovieList() {
       </div>
       <SearchBar onResults={setMovies} />
       <MovieGenres/>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-[10px] m-2 ml-[120px] justify-items-center px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-[10px] m-8 ml-[110px] justify-items-center px-4">
         {movies.map(movie => (
           <Link to={`/movie/${movie.id}`} key={movie.id || movie.id}>
             <div className="bg-[#323B54] rounded-xl p-2">

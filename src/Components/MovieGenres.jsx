@@ -26,7 +26,7 @@ export default function MovieGenres() {
             if (!selectedGenre) return;
             setLoding(true);
             try {
-                const { data } = await axios.get("await axios.get(`https://moviesapi.codingfront.dev/api/v1/genres/${selectedGenre}/movies?page=1`);");
+                const { data } = await axios.get(`https://moviesapi.codingfront.dev/api/v1/genres/${selectedGenre}/movies?page=1`);
                 setMovies(data.data);
             } catch (error) {
                  console.error("خطا در گرفتن ژانر:", error);
@@ -39,13 +39,13 @@ export default function MovieGenres() {
 
 
   return (
-    <div className="w-[800px] h-[56px] flex flex-col gap-10 ml-35 mt-8 bg-[#00000033] rounded-[8px] ">
-      <div className="flex gap-2 ">
+    <div className="w-auto h-auto flex flex-col gap-10 mt-8 bg-[#00000033] rounded-[8px] ">
+      <div className="flex justify-center gap-2 ">
         {genresList.map((genre) => (
           <button
             key={genre}
             onClick={() => setSelectedGenre(genre)}
-            className={`px-4 py-2 rounded-[8px] text-base font-semibold
+            className={`px-4 py-2 mx-auto rounded-[8px] text-base font-semibold
               ${selectedGenre === genre
                 ? "bg-purple-600 text-white text-2xl shadow-md"
                 : "text-gray-300 hover:bg-[#7B6EF6]"}`}
@@ -64,8 +64,8 @@ export default function MovieGenres() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies.map((movie) => (
-            <div key={movie.id} className="bg-gray-900 p-2 rounded">
-              <img src={movie.poster} alt={movie.title} className="w-full h-auto rounded" />
+            <div key={movie.id} className="bg-[#323B54] rounded-xl p-2">
+              <img src={movie.poster} alt={movie.title} className="w-[282px] h-[480px] object-cover rounded-xl" />
               <h3 className="text-white mt-2 text-sm">{movie.title}</h3>
               <p className="text-gray-400 text-xs">امتیاز: {movie.rating}</p>
             </div>
