@@ -39,7 +39,7 @@ export default function MovieGenres() {
 
 
   return (
-    <div className="w-auto h-auto flex flex-col gap-10 mt-8 bg-[#00000033] rounded-[8px] ">
+    <div className="w-auto h-auto flex flex-col gap-6 mt-8 bg-[#00000033] rounded-[8px] ">
       <div className="flex justify-center gap-2 ">
         {genresList.map((genre) => (
           <button
@@ -65,9 +65,8 @@ export default function MovieGenres() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {movies.map((movie) => (
             <div key={movie.id} className="bg-[#323B54] rounded-xl p-2">
-              <img src={movie.poster} alt={movie.title} className="w-[282px] h-[480px] object-cover rounded-xl" />
-              <h3 className="text-white mt-2 text-sm">{movie.title}</h3>
-              <p className="text-gray-400 text-xs">امتیاز: {movie.rating}</p>
+              <img src={movie.poster} alt={movie.title} className="h-[480px] object-cover rounded-xl" />
+              <h3 className="text-[#EBEEF5] mt-2 text-[16px] font-bold font-poppins">{movie.title}</h3>
             </div>
           ))}
         </div>
