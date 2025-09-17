@@ -4,6 +4,15 @@ import { useParams, Link, useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import MovieGenres from "./MovieGenres";
 
+function SkeletonCard() {
+  return (
+    <div className="bg-[#121829] animate-pulse rounded-xl p-2 h-[480px] w-[282px]">
+      <div className="bg-gray-700 h-[400px] w-full rounded-xl mb-4"></div>
+      <div className="bg-gray-600 h-6 w-3/4 rounded mb-2"></div>
+      </div>
+  );
+}
+
 export default function MovieList() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -75,10 +84,14 @@ export default function MovieList() {
               <h2 className="text-[#EBEEF5] text-sm font-Poppins font-bold mt-4 mb-4">
                 {movie.title}
               </h2>
-              <p>{movie.genres?.join(" / ")}</p>
             </div>
           </Link>
         ))}
+        {isFetching && (
+    <>
+      {[...Array(4)].map((_, i) => <SkeletonCard key={i} />)}
+    </>
+  )}
       </div>
     </div>
   );
