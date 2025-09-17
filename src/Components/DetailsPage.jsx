@@ -31,7 +31,7 @@ export default function DetailsPage() {
   
       {movie.images?.[0] && (
         <div
-          className="w-full h-[300px] bg-cover bg-center rounded-3xl shadow-lg mb-10"
+          className="w-[1200px] h-[480px] m-auto bg-cover bg-center rounded-3xl shadow-lg mb-10"
           style={{ backgroundImage: `url(${movie.images[0]})` }}
         ></div>
       )}
@@ -42,7 +42,7 @@ export default function DetailsPage() {
         <img
           src={movie.poster}
           alt={movie.title}
-          className="w-[300px] h-auto rounded-2xl shadow-lg"
+          className="w-[300px] h-[480px] rounded-2xl shadow-lg"
         />
         <div className="max-w-xl space-y-8 text-lg font-poppins">
           <p className="text-2xl font-bold text-[#EBEEF5]">Part of the journey is the end.</p>

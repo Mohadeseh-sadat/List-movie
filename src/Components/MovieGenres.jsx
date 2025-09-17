@@ -5,7 +5,7 @@ export default function MovieGenres() {
     const [genresList, setGenresList] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null);
     const [movies, setMovies] = useState([]);
-    const [loding, setLoding] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function fetchGenres() {
@@ -24,14 +24,14 @@ export default function MovieGenres() {
     useEffect(() => {
         async function fetchByGenre() {
             if (!selectedGenre) return;
-            setLoding(true);
+            setLoading(true);
             try {
                 const { data } = await axios.get(`https://moviesapi.codingfront.dev/api/v1/genres/${selectedGenre}/movies?page=1`);
                 setMovies(data.data);
             } catch (error) {
                  console.error("خطا در گرفتن ژانر:", error);
             } finally {
-                setLoding(false);
+                setLoading(false);
             }
         }
         fetchByGenre();
@@ -59,7 +59,7 @@ export default function MovieGenres() {
         <span className="font-poppins">{selectedGenre}</span>
       </div>
 
-      {loding ? (
+      {loading ? (
         <p className="text-gray-400">در حال بارگذاری فیلم‌ها...</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
