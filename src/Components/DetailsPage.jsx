@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Error from "../assets/Error.svg"
 
 export default function DetailsPage() {
   const { id } = useParams();
@@ -24,7 +25,14 @@ export default function DetailsPage() {
   }, [id]);
 
   if (loading) return <p className="text-center text-white mt-6">در حال بارگذاری...</p>;
-  if (!movie) return <p className="text-center text-white mt-6">فیلم پیدا نشد!</p>;
+  if (!movie) return (
+    <div className="text-center">
+  <img className="mt-8 mx-auto" src={Error} alt="" />
+   <h1 className="text-center text-gray-50 font-semibold mt-6 text-5xl font-poppins">Lost your way?</h1>
+   <p className="text-gray-300 text-base font-poppins font-normal mt-4 ">Oops! This is awkward. You are looking for something that doesn't<br></br> actually exist.</p>
+   <button className="w-[139px] h-[56px] bg-[#7B6EF6] rounded-xl mt-4 ">Go Home</button>
+   </div>
+  );
 
   return (
     <div className="relative text-white min-h-screen p-6">
