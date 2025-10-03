@@ -1,51 +1,31 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function MovieGenres() {
-    const [genresList, setGenresList] = useState([]);
-    const [selectedGenre, setSelectedGenre] = useState(null);
-    const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(false);
+export default function MovieGenres({ selectedGenre, onSelectGenre }) {
+  const [genresList, setGenresList] = useState([]);
 
-    useEffect(() => {
-        async function fetchGenres() {
-            try {
-                const { data } = await axios.get("https://moviesapi.codingfront.dev/api/v1/movies");
-                const allGenres = data.data.flatMap(movie => movie.genres || []);
-                const uniqueGenres = [...new Set(allGenres)];
-                setGenresList(uniqueGenres);
-            } catch (error) {
-                console.error("خطا در گرفتن ژانرها:", error);
-            }
-        }
+  useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const { data } = await axios.get("https://moviesapi.codingfront.dev/api/v1/movies");
+        const allGenres = data.data.flatMap(movie => movie.genres || []);
+        const uniqueGenres = [...new Set(allGenres)];
+        setGenresList(uniqueGenres);
+      } catch (error) {
+        console.error("خطا در گرفتن ژانرها:", error);
+      }
+    }
     fetchGenres();
-    }, []);
-
-    useEffect(() => {
-        async function fetchByGenre() {
-            if (!selectedGenre) return;
-            setLoading(true);
-            try {
-                const { data } = await axios.get(`https://moviesapi.codingfront.dev/api/v1/genres/${selectedGenre}/movies?page=1`);
-                setMovies(data.data);
-            } catch (error) {
-                 console.error("خطا در گرفتن ژانر:", error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchByGenre();
-    }, [selectedGenre]);
-
+  }, []);
 
   return (
-    <div className="w-auto h-auto flex flex-col gap-6 mt-8 bg-[#00000033] rounded-[8px] ">
-      <div className="flex justify-center gap-2 ">
+    <div className="container mx-auto px-1  ml-[140px] mt-15 bg-[#00000033] rounded-[8px] max-w-7xl h-[56px] ">
+      <div className=" max-w-5xl flex flex-wrap justify-center gap-2 p-2">
         {genresList.map((genre) => (
           <button
             key={genre}
-            onClick={() => setSelectedGenre(genre)}
-            className={`px-4 py-2 mx-auto rounded-[8px] text-base font-semibold
+            onClick={() => onSelectGenre(genre)}
+            className={`px-6 py-2 mx-auto rounded-[8px] text-base font-semibold
               ${selectedGenre === genre
                 ? "bg-purple-600 text-white text-2xl shadow-md"
                 : "text-gray-300 hover:bg-[#7B6EF6]"}`}
@@ -54,26 +34,9 @@ export default function MovieGenres() {
           </button>
         ))}
       </div>
-
-      <div className="text-white text-lg ">
+      <div className="text-gray-400 text-3xl mt-8 font-poppins font-bold ">
         <span className="font-poppins">{selectedGenre}</span>
       </div>
-
-      {loading ? (
-        <p className="text-gray-400">در حال بارگذاری فیلم‌ها...</p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {movies.map((movie) => (
-            <div key={movie.id} className="bg-[#323B54] rounded-xl p-2">
-              <img src={movie.poster} alt={movie.title} className="h-[480px] object-cover rounded-xl" />
-              <h3 className="text-[#EBEEF5] mt-2 text-[16px] font-bold font-poppins">{movie.title}</h3>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }
-
-
-        
